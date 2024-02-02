@@ -1,0 +1,49 @@
+/*first navbar*/
+.logonav{
+    padding: 1.10% 3%;
+}
+
+/*second navbar*/   
+.headnav{
+    margin-top: 5%;
+}
+
+    	
+.left{
+	/*margin-left: 2rem;*/
+	margin-top: 5rem;
+	padding-bottom: 1rem;
+}
+
+.padd{
+	margin-top: 4rem;
+}
+
+.under{
+	text-decoration: underline;
+}
+
+.shadow{
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.8);
+}
+
+.cat{
+padding-top: 3rem;
+padding-bottom: 1rem;
+}
+
+.img{
+margin-top: 5rem;
+
+}
+
+.footer {
+position: fixed;
+width: 100%;
+background-color: black;
+color: white;
+text-align: center;
+left: 0;
+bottom: 0;
+padding-top: 3rem;
+}

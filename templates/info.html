@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		
+		.btn{
+		  width: 100px;
+		  height: 35px;
+		  display: flex;
+		  justify-content: center;
+		  align-items: center;
+		  color: var(--text-color);
+		  /* background-color: #1db096; */
+		  border: solid;
+		  border-radius: 20px;
+		  border-color: #1db096;
+		  box-shadow: 5px 10px 30px rgba(24, 139, 119, 0.2);
+		}
+
+		.btn:hover {
+		  background-color: #1db096; /* #23cdad */
+		  transition: all ease 0.2s;
+		}
+	</style>
+</head>
+<body>
+
+@app.route('/book', methods=['GET', 'POST'])
+def book():
+    if 'admloggedin' not in session:
+        return redirect('/adminlogin')
+    else:
+        subcur = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        subcur.execute('select * from subj where dept_id=%s' %(session['dept_id']),)
+        acc = subcur.fetchall()
+        subcur.close()
+        dispbook = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        dispbook.execute('select * from links where type =%s ',('books',))
+        books = dispbook.fetchall()
+        dispbook.close()
+        msg = ''
+        if request.method == 'POST':
+            subj_id = request.form['subj_id']
+            link_id = randint(10000000,99999999)
+            book = request.form['book_name']
+            booklink = request.form['book_link']
+            type = 'books'
+            bookcur = mysql.connection.cursor(MySQLdb.cursors.DictCursor) #MySQLdb.cursors.DictCursor
+            bookcur.execute('insert into links values (%s, %s, %s, %s, %s, %s)',(session['dept_id'], subj_id, link_id, book, booklink, type))
+            try:
+                mysql.connection.commit()
+                bookcur.close()
+                msg = "Book added Successfully!"
+                dispbook = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+                dispbook.execute('select * from links where type =%s ',('books',))
+                books = dispbook.fetchall()
+                dispbook.close()
+                return render_template('book.html', msg = msg, acc = acc, books = books)
+
+            except:
+                bookcur.close()
+                msg = "Please enter data correctly!!"
+        return render_template('book.html', msg=msg, acc = acc, books = books)
+
+
+	  <form method = "post" action = "{{ url_for('book') }}">
+                  <fieldset class="form-group">
+                      <legend class="border-bottom mb-4">Add Subject</legend>
+                      {% if msg == "" %}
+                          {{ continue }}
+                      {% elif msg == "Book added Successfully!" %}
+                          <div class="alert alert-success">{{ msg }}</div>
+                      {% else %}
+                          <div class="alert alert-danger">{{ msg }}</div>
+                      {% endif %}
+                      <div class="form-group">
+                        <label>Select Subject Name</label>
+                        <select class="custom-select" name="subj_id" required id="inputGroupSelect01">
+                        {% for i in acc %}
+                              {% if i['dept_id'] == session['dept_id'] %}
+                                <option value="{{ i['subj_id'] }}">{{ i['subj_name'] }}</option>
+                              {% endif %}
+                        {% endfor %}
+                       </select>
+                     </div>
+                      <div class="form-group">
+                        <label>Book Name</label>
+                        <input type="text" name="book_name" required class="form-control">
+                      </div>
+                      <div class="form-group">
+                        <label>Book Link</label>
+                        <input type="text" name="book_link" required class="form-control">
+                      </div>
+                   </fieldset>
+                    <div class="form-group">
+                      <button type="submit" class="btn btn-primary">Add Book</button>
+
+                    </div>
+                      <!-- <div class="border-top pt-3">
+                        <small class="text-muted ml-2">
+                              <a href="#">Forgot Password?</a>
+                        </small>
+                      </div> -->
+                </form><br>
+
+                {% for j in acc %}
+			        {% if j['dept_id'] == session['dept_id'] %}
+			          <h1> {{ j['subj_name'] }} </h1>
+
+			            <table class="table table-hover table-dark">
+			              <thead>
+			                <tr>
+			                  <th scope="col">Book</th>
+			                  <th scope="col">Link</th>
+			                </tr>
+			              </thead>
+			              <tbody>
+			        {% endif %}
+			                {% for i in books %}
+			                  <tr>
+			                      {% if i['dept_id'] == session['dept_id'] and i['subj_id'] == j['subj_id']  %}
+			                      <td>{{ i['link_name'] }}</td>
+			                      <td><a href="{{ i['link'] }}">{{ i['link'] }}</a></td>
+			                      {% endif %}
+			                  </tr>
+			                {% endfor %}
+			              </tbody>
+			            </table>
+			     {% endfor %}
+
+
+
+<!-- ---------------------------------------------------------------------------------------------------------------- -->
+
+@app.route('/<int:id>/<type>')
+def disp(id, type):
+    if 'loggedin' in session:
+        links = ''
+        subj = ''
+        displinks = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        displinks.execute('select * from links where type =%s and dept_id =%s ',(type, id,))
+        links = displinks.fetchall()
+        displinks.close()
+        for i in links:
+            displinks = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+            displinks.execute('select * from subj where subj_id =%s' %(i['subj_id'],))
+            subj = displinks.fetchall()
+            displinks.close()
+        return render_template('disp.html', links = links, subj = subj)
+    else:
+        return redirect('login')
+
+
+
+	
+	@app.route('/study_material', methods=['GET', 'POST'])
+	def study_material():
+	    if 'admloggedin' not in session:
+	        return redirect('/adminlogin')
+	    else:
+	        subcur = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+	        subcur.execute('select * from subj where dept_id=%s' %(session['dept_id']),)
+	        acc = subcur.fetchall()
+	        subcur.close()
+	        msg = ''
+	        dispsm = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+	        dispsm.execute('select * from links where type =%s ',('study_material',))
+	        sm = dispsm.fetchall()
+	        dispsm.close()
+	        if request.method == 'POST':
+	            subj_id = request.form['subj_id']
+	            link_id = randint(10000000,99999999)
+	            sm = request.form['sm_name']
+	            smlink = request.form['sm_link']
+	            type = 'study_material'
+	            bookcur = mysql.connection.cursor(MySQLdb.cursors.DictCursor) #MySQLdb.cursors.DictCursor
+	            bookcur.execute('insert into links values (%s, %s, %s, %s, %s, %s)',(session['dept_id'], subj_id, link_id, sm, smlink, type))
+	            try:
+	                mysql.connection.commit()
+	                bookcur.close()
+	                msg = "Study Material added Successfully!"
+	                dispsm = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+	                dispsm.execute('select * from links where type =%s ',('study_material',))
+	                sm = dispsm.fetchall()
+	                dispsm.close()
+	                return render_template('study_material.html', msg = msg, acc = acc, sm = sm)
+	            except:
+	                bookcur.close()
+	                msg = "Please enter data correctly!!"
+	        return render_template('study_material.html', msg=msg, acc = acc, sm = sm)
+
+
+
+	<form method = "post" action = "{{ url_for('study_material') }}">
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">Add Study Material</legend>
+            {% if msg == "" %}
+                {{ continue }}
+            {% elif msg == "Study Material added Successfully!" %}
+                <div class="alert alert-success">{{ msg }}</div>
+            {% else %}
+                <div class="alert alert-danger">{{ msg }}</div>
+            {% endif %}
+            <div class="form-group">
+              <label>Select Subject Name</label>
+              <select class="custom-select" name="subj_id" required id="inputGroupSelect01">
+              {% for i in acc %}
+                    {% if i['dept_id'] == session['dept_id'] %}
+                      <option value="{{ i['subj_id'] }}">{{ i['subj_name'] }}</option>
+                    {% endif %}
+              {% endfor %}
+             </select>
+           </div>
+            <div class="form-group">
+              <label>Study Material Name</label>
+              <input type="text" name="sm_name" required class="form-control">
+            </div>
+            <div class="form-group">
+              <label>Study Material Link</label>
+              <input type="text" name="sm_link" required class="form-control">
+            </div>
+         </fieldset>
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary">Add Study Material</button>
+
+          </div>
+            <!-- <div class="border-top pt-3">
+              <small class="text-muted ml-2">
+                    <a href="#">Forgot Password?</a>
+              </small>
+            </div> -->
+      </form><br>
+
+        {% for j in acc %}
+        {% if j['dept_id'] == session['dept_id'] %}
+          <h1> {{ j['subj_name'] }} </h1>
+
+            <table class="table table-hover table-dark">
+              <thead>
+                <tr>
+                  <th scope="col">Study Material</th>
+                  <th scope="col">Link</th>
+                </tr>
+              </thead>
+              <tbody>
+        {% endif %}
+                {% for i in sm %}
+                  <tr>
+                      {% if i['dept_id'] == session['dept_id'] and i['subj_id'] == j['subj_id']  %}
+                      <td>{{ i['link_name'] }}</td>
+                      <td><a href="{{ i['link'] }}">{{ i['link'] }}</a></td>
+                      {% endif %}
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+      {% endfor %}
+
+
+</body>
+</html>

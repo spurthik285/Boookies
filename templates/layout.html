@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Book Rent Website</title>
+	<!-- Required meta tags -->
+    <meta charset = "utf-8">
+    <meta name = "viewport" content="width=device-width, initial-scale=1">
+    <link rel = "stylesheet" type="text/css" href="{{ url_for('static', filename='home.css')}}" > 
+    <link rel = "icon" href="{{ url_for('static', filename='booklogo.jpg')}}" type = "image/x-icon">
+    <!-- Bootstrap CSS -->
+    <link rel = "stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity = "sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+    <!-- <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='layout.css')}}"> -->
+
+</head>
+<style type="text/css">
+        
+
+      *{
+         box-sizing: border-box;
+        }
+
+      body{
+        margin: 0px;
+        padding: 0px;
+        font: poppins;
+      }
+
+      #main{
+        width: 100%;
+        height: 15vh;
+        position: relative;
+      }
+
+      nav{
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        position: fixed;
+        background-color: #23cdaf; /*#03fcd3*/
+        top: ;
+        padding-right: px;
+        padding-left:
+        width: 100%;
+        box-shadow: 5px 10px 30px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+      }
+
+      ./*navabar{
+        position: fixed;
+        overflow: hidden;
+      }*/
+
+      .logo img{
+        height: 50px;
+      }
+
+      .menu{
+        list-style: none;
+        display: flex;
+        padding-top: 2px;
+        text-decoration: none;
+        /*margin-left: rem;*/
+        /*padding : 5px;*/
+      }
+
+      .menu div a{
+        height: 40px;
+        line-height: 43px;
+        margin: 5px;
+        padding: 0px 25px;
+        display: flex;
+        font-size: 1.1em;
+        text-transform: uppercase;
+        font-weight: 400;
+        letter-spacing: 1px;
+        text-decoration: none;  
+        color: White;
+  
+      
+      }
+
+      .menu div a:hover{
+        background-color: #03fcd3;/*#23cdaf;*/
+        color: black;
+        box-shadow: 5px 10px 30px rgba(24, 139, 119, 0.2);
+        transition: all ease 0.2s;
+        border-radius: 5px;
+      }
+
+      div a{
+        text-decoration: none;
+      }
+
+      a{
+        text-decoration: none;
+      }
+
+      .space{
+        padding-left: 5rem;
+        font-size: em;
+      }
+
+      .logout{
+        padding-left: 2rem;
+      }
+
+      .logo{
+        padding-left: -5rem;
+      }
+
+      .btn{
+        color: white;
+      }
+
+      .btn:hover{
+         background-color: #03fcd3;/*#23cdaf;*/
+        color: black;
+        box-shadow: 5px 10px 30px rgba(24, 139, 119, 0.2);
+        transition: all ease 0.2s;
+        border-radius: 5px;
+
+
+      }
+
+      .work{
+        color: #39bfbd;
+        font-weight: 400;
+        font-size: 1.3em;
+        /*border-bottom: 2px solid #39bfbd;*/
+        color: white;
+        width: 80px;
+        padding-bottom: 5px;
+        height: 60px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-decoration: none
+        /*color: black;*/
+        /* background-color: #1db096; */
+        /*border: solid;*/
+        /*border-radius: 20px;*/
+        /*border-color: #1db096;*/
+       /* box-shadow: 5px 10px 30px rgba(24, 139, 119, 0.2);*/
+
+      }
+
+      .work:hover {
+             /* background-color: #1db096;
+              transition: all ease 0.2s;
+              color: White;*/
+        /*background-color: #03fcd3; *//*#23cdaf;*/
+        color: black;
+        /*box-shadow: 5px 10px 30px rgba(24, 139, 119, 0.2);*/
+        /*transition: all ease 0.2s;*/
+      }
+
+      .navbar_dropdown{
+        background-color: #23cdaf;
+        color: white;
+        position: absolute;
+        top: calc(100% + 5px);
+        left: 0px;
+        border-radius: 5px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);/*rgba(17,17,26,0.1) 0px 3px 14px, rgba(17,17,26,0.1) 0px 6px 20px;*/
+        opacity: 0;
+        transform: scale(0.3);
+        transform-origin: top left;
+        transition: transform 0.4s, opacity 0.2s;
+        overflow: hidden;
+      }
+
+      .navbar_dropdown ul{
+        list-style: none;
+        padding: 5px 0px;
+      }
+
+      .navbar_dropdown li{
+        padding: 5px 15px;
+        height: 
+        justify-content: center;
+        text-align: center;
+        font-size: 0.7em;
+      }
+
+      .navbar_item{
+        position: relative;
+      }
+
+      .navbar_item:hover .navbar_dropdown{
+        opacity: 1;
+        transform: scale(1);
+      }
+
+
+
+      .login{
+        display: flex;
+        justify-content: center;
+        list-style: none;
+      }
+      
+    	/*.logonav{
+    		padding: 1.10% 3%;
+    	}
+*/
+      /*.nav{
+        padding: 5px;
+      }
+    	*/
+    	.left{
+    		/*margin-left: 2rem;*/
+    		margin-top: 5rem;
+    		padding-bottom: 1rem;
+    	}
+
+    	/*.padd{
+    		margin-top: 4rem;
+    	}*/
+
+    	.under{
+    		text-decoration: underline;
+    	}
+
+    	.shadow{
+    		box-shadow: 0 4px 8px 0 rgba(0,0,0,0.8);
+    	}
+
+     /* .cat{
+        padding-top: 2rem;
+        padding-bottom: 1rem;
+      }
+*/
+
+      .img{
+        padding-top: em;
+        
+      }
+
+      .footer {
+        position: static;
+        width: 100%;
+        background-color: black;
+        color: white;
+        text-align: ;
+        margin-top: 3rem;
+      }
+
+      .footer-basic {
+        padding:10%;
+        background-color:#ffffff;
+        color:#4b4c4d;
+      }
+
+      .footer-basic ul {
+        padding:0;
+        list-style:none;
+        text-align:center;
+        font-size:18px;
+        line-height:1.6;
+        margin-bottom:0;
+      }
+
+      .footer-basic li {
+        padding:0 10px;
+      }
+
+      .footer-basic ul a {
+        color:black;
+        text-decoration:none;
+        opacity:0.8;
+      }
+
+      .footer-basic ul a:hover {
+        color: #23cdaf;;
+        opacity:1;
+      }
+
+      .footer-basic .social {
+        text-align:center;
+        padding-bottom:25px;
+      }
+
+      .footer-basic .social > a {
+        font-size:24px;
+        width:40px;
+        height:40px;
+        line-height:40px;
+        display:inline-block;
+        text-align:center;
+        border-radius:50%;
+        border:1px solid #ccc;
+        margin:0 8px;
+        color:black;
+        opacity:0.75;
+      }
+
+      .footer-basic .social > a:hover {
+        color: #23cdaf;
+        opacity:0.9;
+      }
+
+      .footer-basic .copyright {
+        margin-top:15px;
+        text-align:center;
+        font-size:13px;
+        color:#aaa;
+        margin-bottom:0;
+      }
+
+      .space {
+       /* margin-left: 100px;*/
+       /*float: right;*/
+      }
+
+</style>    
+
+
+
+<body> <!-- style="background-color:#f8f8ff" --><!-- #edf1f5 -->
+
+<section id="main">
+  <nav class="navbar fixed-top">
+
+       <!-- <a href="#" class="logo">
+        <img src="avg.jpg" alt="The logo of project">
+      </a> -->
+      <a class="navbar-brand mr-5 work" href="/">
+          <img src="{{url_for('static', filename='booklogo.jpg')}}" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">&nbsp;Bookies
+      </a>
+      <span class="menu-space"></span>
+      <div class="menu">
+        <!-- <input class = "form-control mr-sm-2" type = "search" placeholder = "Search" aria-label = "Search">
+        <button class = "btn btn-outline-dark my-2 my-sm-2 mr-sm-5" type="submit">Search</button> -->
+        <!-- <a class="navbar-brand mr-5 logo" href="/">
+          <img src="{{url_for('static', filename='booklogo.jpg')}}" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
+        Bookies
+        </a> -->
+        <form class="form-inline my-2 my-lg-0">
+          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline my-2 my-sm-0" type="submit">Search</button>
+        </form>
+        <div><a href="/">Home</a></div>
+        <div class="navbar_item" class="dropbtn"><a href="#">Category</a>
+          <div class="navbar_dropdown">
+            <ul class="dropdown-content">
+              <li><a href="#">Biography</a></li>
+              <li><a href="#">StudyMaterial</a></li>
+              <li><a href="#">ScienceFiction</a></li>
+              <li><a href="#">Fantasy</a></li>
+            </ul>
+          </div>
+        </div>
+        <div><a href="#">Your Shelf</a></div>
+        <div><a href="#">Orders</a></div>
+        <div><a href="profile">Profile</a></div>
+        <!-- <li><a href="#">Clients</a></li>
+        <li><a href="#">Contacts</a></li> -->
+      </div>
+      
+        {% if 'loggedin' in session %}
+        
+        <!-- <a href=""><i class="material-icons nav-item nav-link" id="icon">notifications</i></a>
+        <a href=""><i class="material-icons nav-item nav-link" id="icon">shopping_cart</i></a> -->
+        <li class="work space" style="font-size: 2em;"> Hi,{{ session['username'] }}</li>
+        <li class="login logout"><a href="/logout" class="work">Logout</a></li>
+        
+      
+        
+        {% else %}
+         <li class="login"><a href="/login" class="work">Login</a>
+         <a href="/register" class="work">Sign Up</a></li><!--  &nbsp; -->
+         {% endif %}
+    </nav>
+  </section>
+
+<div class="container">
+    {% block content %}{% endblock %} 
+  </div>
+	
+
+	<!-- Option 2: jQuery, Popper.js, and Bootstrap JS -->
+	<!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script> -->
+
+</body>
+
+
+<div class="footer-basic">
+        <footer>
+            <div class="social"><a href="#"><i class="icon ion-social-instagram"></i></a><a href="#"><i class="icon ion-social-snapchat"></i></a><a href="#"><i class="icon ion-social-twitter"></i></a><a href="#"><i class="icon ion-social-facebook"></i></a></div>
+            <ul class="list-inline">
+                <li class="list-inline-item"><a href="#">Home</a></li>
+                <li class="list-inline-item"><a href="#">Services</a></li>
+                <li class="list-inline-item"><a href="#">About</a></li>
+                <li class="list-inline-item"><a href="#">Terms</a></li>
+                <li class="list-inline-item"><a href="#">Privacy Policy</a></li>
+            </ul>
+            <p class="copyright">Company Name © 2018</p>
+        </footer>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+<!--     <nav class = "navbar navbar-dark bg-dark fixed-top logonav">       
+      <a class = "navbar-brand nav-item" href = "{{url_for('home')}}" style = "font-size: 30px;">
+        <img src="/docs/4.5/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy"> 
+        boookies
+      </a>
+      <form class = "form-inline">
+        <input class = "form-control mr-sm-1" type = "search" placeholder = "Search" aria-label = "Search">
+        <button class = "btn btn-outline-light my-2 my-sm-0 mr-sm-5" type="submit">Search</button>
+        {% if 'loggedin' in session %}
+        <a href = "/logout"><button type = "button" class = "btn btn-outline-light mr-sm-2">LOGOUT</button></a>
+        {% else %}
+        <a href = "/login"><button type = "button" class = "btn btn-outline-light mr-sm-2">LOGIN</button></a>
+        <a href = "/register"><button type = "button" class = "btn btn-outline-light">SING UP</button></a>
+        {% endif %}
+      </form>
+    </nav> -->
+
+   <!--  <div class="" style="padding-top: 89px"> -->
+  
+      <!-- <div class = "navbar-info bg-info ">
+        <ul class = "nav nav-pills nav-justified nav" >
+
+          <li class = "nav-item">
+            <a class = "nav-link btn-outline-light" href = "/">HOME</a>
+          </li>
+
+          <li class = "nav-item">
+            <a class = "nav-link btn-outline-light" href = "catogary">CATOGARY</a>
+          </li>
+
+          {% if 'loggedin' in session %}
+          <li class = "nav-item">
+            <a class = "nav-link btn-outline-light" href = "#">BOOK SHELF</a>
+          </li>
+
+          <li class = "nav-item">
+            <a class = "nav-link btn-outline-light" href = "#" tabindex = "-1" aria-disabled = "true">ORDER</a>
+          </li>
+
+          <li class = "nav-item">
+            <a class = "nav-link btn-outline-light" href = "profile" tabindex = "-1" aria-disabled = "true">PROFILE</a>
+          </li> 
+           {% endif %}
+           
+        </ul>
+      </div>
+    </div> -->
+  
+
+  
+
+<!-- <header class="site-header">
+  <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
+    <div class="container">
+      <a class="navbar-brand mr-4" href="/">Flask Blog</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarToggle">
+        <div class="navbar-nav mr-auto">
+          <a class="nav-item nav-link" href="/">Home</a>
+          <a class="nav-item nav-link" href="/about">About</a>
+        </div>
+        
+        <div class="navbar-nav">
+          <a class="nav-item nav-link" href="/login">Login</a>
+          <a class="nav-item nav-link" href="/register">Register</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header> -->

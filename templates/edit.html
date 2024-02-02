@@ -1,0 +1,29 @@
+{% extends "adminlayout.html" %}
+{% block content %}
+
+<div class="row">
+	<div class="col-md-4 offset-md-4">
+		<div class="card card-body">
+			{% for i in cat %}
+			<form action="/update/{{ i[0] }}" method="POST">
+				 
+				<div class="from-group">
+					
+					<input type="text" name="cat_name" value="{{ i[1] }}" class="form-control">
+					
+				</div><br>
+				<div class="from-group">
+					<button type="submit" class="btn btn-primary btn-block">Update</button>
+				</div>
+			</form>
+			{% endfor %}
+		</div>
+	</div>
+</div>
+
+
+
+
+
+
+{% endblock content %}

@@ -1,0 +1,95 @@
+{% extends "adminlayout.html" %}
+{% block content %}
+
+<!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name = "viewport" content="width=device-width, initial-scale=1">
+    <link rel = "stylesheet" type="text/css" href="{{ url_for('static', filename='home.css')}}" > 
+    <!-- Bootstrap CSS -->
+    <link rel = "stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity = "sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+
+<title>Add Catogary</title>
+    <style type="text/css">
+      .left{
+        margin-left: 20rem;
+        margin-top: 1rem;
+        }
+    </style>
+
+
+<div class = "card text-white bg-dark mb-8 left" style="max-width: 30rem;">
+  <div class = "col-md-12">
+    <div class = "card-body">
+      <fieldset class = "form-group">
+      <legend class = "border-bottom mb-4">ADD CATOGARY</legend>
+        <form action = "{{ url_for('addcatogary') }}" method = "post">
+
+            <!-- <div class = "form-group">
+              <label for = "exampleInputCatogaryid">Catogary id</label>
+              <input type = "text" name = "catid" class = "form-control" id = "exampleInputCatid" placeholder = "Please enter catogary id">
+            </div> -->
+            {% if msg == "" %}
+                  {{ continue }}
+              {% elif msg == "Category added Successfully!" %}
+                  <div class="alert alert-success">{{ msg }}</div>
+              {% else %}
+                  <div class="alert alert-danger">{{ msg }}</div>
+              {% endif %}
+
+            <div class = "form-group">
+              <label for = "exampleInputBookid">Catogary Name</label>
+              <input type = "text" name = "catname" class = "form-control" id = "exampleInputbookid" placeholder = "Please enter book name">
+            </div>
+
+            <a href=""><button type = "submit" class = "btn btn-primary">Add Catogary</button></a>
+             
+        </form>
+      </fieldset> 
+    </div>
+  </div>
+</div>
+    <br>
+  <div> 
+     <!-- <table class="table table-hover table-dark"> -->
+      <table class="table table-dark" style="width: 40%;" align="center">
+            <thead align="center">
+              <tr>
+                <th scope="col">Category</th>
+                <th scope="col">Edit</th>
+                <th scope="col">Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for i in cat %} 
+                      <tr align="center">
+                      <td scope="col">{{ i['cat_name'] }}</td>
+                      <td><a href="/edit/{{i['catid']}}" class="btn btn-outline-primary" type="button" value="Edit">Edit</a></td>
+                      <td><a href="/delete/{{i['cat_name']}}" class="btn btn-outline-danger" type="button" value="Delete">Delete</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+      </table>   
+  </div>
+
+{% endblock content %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

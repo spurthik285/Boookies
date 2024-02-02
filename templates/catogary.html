@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+{% block content %}
+
+	<div class = "cat">
+		{% for div in range(6) %}
+			
+			<div class = "container">
+					
+					<div class = "row">
+						<div class = "col">
+							<div class = "d-grid gap-2 col-12">
+							  <button class = "btn btn-dark btn-lg btn-block" type = "button">Button</button> &nbsp;
+							  
+							</div>
+						</div>
+						<div class = "col">
+							<div class = "d-grid gap-2 col-12">
+							  <button class = "btn btn-dark btn-lg btn-block" type = "button">Button</button> &nbsp;
+							  
+							</div>
+						</div>
+					</div>
+			</div>
+		{% endfor %}
+	</div>
+</body>
+
+
+{% endblock content %}
