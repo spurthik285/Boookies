@@ -1,4 +1,4 @@
-#BOOKIES#
+<b>BOOKIES</b>
 
 Revolutionized traditional book renting with a dynamic online platform using Python and Flask. 
 Leveraged HTML, CSS, and Bootstrap for seamless design, ensuring an engaging user experience. 
