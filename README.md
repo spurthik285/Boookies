@@ -1,7 +1,21 @@
-<b>BOOKIES</b>
+<p align="center">
+  <img src="bookies_logo.png" alt="Bookies Logo" width="200"/>
+</p>
 
-Revolutionized traditional book renting with a dynamic online platform using Python and Flask. 
-Leveraged HTML, CSS, and Bootstrap for seamless design, ensuring an engaging user experience. 
-Implemented MySQL for robust database management. 
-Introduced a subscription model, allowing users to access a diverse range of books for rent. 
-Passionate about transforming offline services into innovative online solutions.
+# Bookies: Online Book Rental System
+
+Bookies is an innovative online platform that revolutionizes the way users borrow books from libraries. With Bookies, users can browse, rent books from the comfort of their own homes. Say goodbye to long queues and limited library hours – Bookies brings the library experience to you, anytime, anywhere.
+
+## Features
+
+- **User Authentication**: Secure registration and login system to access Bookies' features.
+- **Browse and Search**: Easily search for books by title, author, genre, or keyword.
+- **Rent Books**: Rent books with just a few clicks, and keep track of your rentals.
+- **User Profile**: View your rental history and manage your account settings.
+- **Admin Panel**: Admin interface for managing books, users, and inventory.
+
+## Technologies Used
+
+- **Frontend**: HTML, CSS, Bootstrap
+- **Backend**: Python Framework - Flask
+- **Database**: MySQL
