@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="bookies_logo.png" alt="Bookies Logo" width="200"/>
+  <img src="booklogo.jpg" alt="Bookies Logo" width="200"/>
 </p>
 
 # Bookies: Online Book Rental System
